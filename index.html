@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+<link rel="manifest" href="manifest.json">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Recuérdame</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>🧠 Recuérdame</h1>
+
+        <p class="descripcion">
+            Tu asistente personal de recordatorios
+        </p>
+
+
+        <div class="entrada">
+
+            <!-- CAMPO DE TAREA + MICRÓFONO -->
+
+            <div class="fila-voz">
+
+                <input
+                    type="text"
+                    id="entradaTarea"
+                    placeholder="Cuéntame qué tienes que hacer..."
+                >
+
+                <button
+                    type="button"
+                    class="boton-microfono"
+                    onclick="iniciarVoz()"
+                >
+                    🎤
+                </button>
+
+            </div>
+
+
+            <!-- FECHA -->
+
+            <input
+                type="date"
+                id="fechaTarea"
+            >
+
+
+            <!-- HORA -->
+
+            <input
+                type="time"
+                id="horaTarea"
+            >
+
+
+            <!-- CANAL -->
+
+            <label for="canalTarea">
+                📢 ¿Cómo quieres que te recuerde?
+            </label>
+
+            <select id="canalTarea">
+
+                <option value="app">
+                    🔔 Notificación de la app
+                </option>
+
+                <option value="whatsapp">
+                    💬 WhatsApp
+                </option>
+
+                <option value="ambos">
+                    🔔💬 App + WhatsApp
+                </option>
+
+            </select>
+
+
+            <!-- BOTONES -->
+
+            <button onclick="agregarTarea()">
+                + Agregar tarea
+            </button>
+
+
+            <button onclick="interpretarTarea()">
+                🧠 Entender tarea
+            </button>
+
+
+            <button onclick="activarNotificaciones()">
+                🔔 Activar notificaciones
+            </button>
+
+
+            <button onclick="probarNotificacion()">
+                🧪 Probar notificación
+            </button>
+
+
+            <!-- RESULTADO DE INTERPRETACIÓN -->
+
+            <div
+                id="resultadoIA"
+                class="resultado-ia"
+            >
+
+                <h3>
+                    🧠 Entendí tu tarea
+                </h3>
+
+
+                <p id="resultadoTexto"></p>
+
+
+                <button
+                    onclick="guardarTareaInterpretada()"
+                >
+                    ✅ Guardar tarea
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- LISTA DE TAREAS -->
+
+        <h2 class="titulo-tareas">
+            Mis tareas
+        </h2>
+
+
+        <div id="listaTareas"></div>
+
+    </div>
+
+
+    <!-- ==================================
+         MODAL DE RECORDATORIO
+    =================================== -->
+
+    <div
+        id="modalRecordatorio"
+        class="modal-recordatorio"
+    >
+
+        <div class="contenido-recordatorio">
+
+            <h2>
+                🔔 Recordatorio
+            </h2>
+
+
+            <p id="textoRecordatorio"></p>
+
+
+            <p>
+                ¿Qué quieres hacer?
+            </p>
+
+
+            <div class="opciones-recordatorio">
+
+                <button
+                    onclick="completarDesdeRecordatorio()"
+                >
+                    ✅ Hecho
+                </button>
+
+
+                <button
+                    onclick="posponerDesdeRecordatorio(10)"
+                >
+                    ⏰ 10 minutos
+                </button>
+
+
+                <button
+                    onclick="posponerDesdeRecordatorio(30)"
+                >
+                    ⏰ 30 minutos
+                </button>
+
+
+                <button
+                    onclick="posponerDesdeRecordatorio(60)"
+                >
+                    ⏰ 1 hora
+                </button>
+
+
+                <button
+                    onclick="posponerMañanaDesdeRecordatorio()"
+                >
+                    📅 Mañana
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================
+         JAVASCRIPT
+    =================================== -->
+
+  <script src="notificationService.js"></script>
+<script src="whatsappService.js"></script>
+<script src="app.js"></script>
+
+</body>
+
+</html>
