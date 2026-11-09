@@ -1,232 +1,328 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
-<link rel="manifest" href="manifest.json">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Recuérdame</title>
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="manifest" href="manifest.json">
+    <title>Recuérdame | Dashboard</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="contenedor">
+<div class="dashboard">
 
-        <h1>🧠 Recuérdame</h1>
+    <!-- MENU LATERAL -->
+    <aside class="sidebar">
 
-        <p class="descripcion">
-            Tu asistente personal de recordatorios
-        </p>
+        <div class="logo">
+            <div class="logo-icon">🧠</div>
+            <div>
+                <h2>Recuérdame</h2>
+                <span>Tu asistente personal</span>
+            </div>
+        </div>
+
+        <div class="menu-titulo">MENÚ PRINCIPAL</div>
+
+        <nav class="menu">
+            <a href="#inicio" class="menu-item activo">
+                <span>▦</span> Inicio
+            </a>
+
+            <a href="#crear" class="menu-item">
+                <span>＋</span> Crear recordatorio
+            </a>
+
+            <a href="#tareas" class="menu-item">
+                <span>☑</span> Mis tareas
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="asistente-card">
+                <div class="asistente-icon">✨</div>
+                <h3>Tu asistente inteligente</h3>
+                <p>Organiza tus actividades y no olvides nada importante.</p>
+            </div>
+
+            <div class="sidebar-footer">
+                <span>🧠 Recuérdame</span>
+                <small>Tu tiempo, mejor organizado.</small>
+            </div>
+        </div>
+
+    </aside>
 
 
-        <div class="entrada">
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenido">
 
-            <!-- CAMPO DE TAREA + MICRÓFONO -->
+        <!-- ENCABEZADO -->
+        <header class="topbar" id="inicio">
 
-            <div class="fila-voz">
+            <div>
+                <span class="saludo">TU ESPACIO PERSONAL</span>
+                <h1>¡Hola! Bienvenido 👋</h1>
+                <p>Organiza tu día y mantén todo bajo control.</p>
+            </div>
 
-                <input
-                    type="text"
-                    id="entradaTarea"
-                    placeholder="Cuéntame qué tienes que hacer..."
-                >
+            <div class="estado-app">
+                <span class="estado-punto"></span>
+                Tu asistente está listo
+            </div>
+
+        </header>
+
+
+        <!-- TARJETAS INFORMATIVAS -->
+        <section class="resumen">
+
+            <div class="tarjeta-resumen">
+                <div class="tarjeta-icono morado">📋</div>
+                <div>
+                    <span>Organización</span>
+                    <h3>Mis tareas</h3>
+                    <small>Mantén todo en orden</small>
+                </div>
+            </div>
+
+            <div class="tarjeta-resumen">
+                <div class="tarjeta-icono azul">🔔</div>
+                <div>
+                    <span>Notificaciones</span>
+                    <h3>Recordatorios</h3>
+                    <small>No olvides tus pendientes</small>
+                </div>
+            </div>
+
+            <div class="tarjeta-resumen">
+                <div class="tarjeta-icono verde">🧠</div>
+                <div>
+                    <span>Inteligencia artificial</span>
+                    <h3>Asistente IA</h3>
+                    <small>Entiende tus actividades</small>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- CREAR RECORDATORIO -->
+        <section class="panel crear-panel" id="crear">
+
+            <div class="panel-encabezado">
+                <div>
+                    <span class="etiqueta">NUEVA ACTIVIDAD</span>
+                    <h2>Crear recordatorio</h2>
+                    <p>Cuéntame qué necesitas recordar.</p>
+                </div>
+
+                <div class="panel-emoji">✍️</div>
+            </div>
+
+
+            <div class="entrada">
+
+                <div class="campo">
+                    <label for="entradaTarea">¿Qué tienes que hacer?</label>
+
+                    <div class="fila-voz">
+                        <input
+                            type="text"
+                            id="entradaTarea"
+                            placeholder="Ej. Recordarme pagar la factura mañana..."
+                        >
+
+                        <button
+                            type="button"
+                            class="boton-microfono"
+                            onclick="iniciarVoz()"
+                            title="Hablar"
+                        >🎤</button>
+                    </div>
+                </div>
+
+
+                <div class="campos-fecha">
+
+                    <div class="campo">
+                        <label for="fechaTarea">📅 Fecha</label>
+                        <input type="date" id="fechaTarea">
+                    </div>
+
+                    <div class="campo">
+                        <label for="horaTarea">⏰ Hora</label>
+                        <input type="time" id="horaTarea">
+                    </div>
+
+                </div>
+
+
+                <div class="campo">
+                    <label for="canalTarea">📢 ¿Cómo quieres recibir el recordatorio?</label>
+
+                    <select id="canalTarea">
+                        <option value="app">🔔 Notificación de la app</option>
+                        <option value="whatsapp">💬 WhatsApp</option>
+                        <option value="ambos">🔔💬 App + WhatsApp</option>
+                    </select>
+                </div>
+
+
+                <div class="botones-acciones">
+
+                    <button
+                        type="button"
+                        class="boton-principal"
+                        onclick="agregarTarea()"
+                    >
+                        ＋ Agregar tarea
+                    </button>
+
+                    <button
+                        type="button"
+                        class="boton-ia"
+                        onclick="interpretarTarea()"
+                    >
+                        🧠 Entender tarea
+                    </button>
+
+                </div>
+
+
+                <!-- RESULTADO IA -->
+                <div id="resultadoIA" class="resultado-ia">
+
+                    <h3>🧠 Entendí tu tarea</h3>
+
+                    <p id="resultadoTexto"></p>
+
+                    <button
+                        type="button"
+                        class="boton-principal"
+                        onclick="guardarTareaInterpretada()"
+                    >
+                        ✅ Guardar tarea
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- HERRAMIENTAS -->
+        <section class="herramientas">
+
+            <div class="herramienta-info">
+                <div class="herramienta-icono">🔔</div>
+                <div>
+                    <h3>Notificaciones</h3>
+                    <p>Activa las alertas para recibir tus recordatorios.</p>
+                </div>
+            </div>
+
+            <div class="herramienta-botones">
 
                 <button
                     type="button"
-                    class="boton-microfono"
-                    onclick="iniciarVoz()"
+                    class="boton-secundario"
+                    onclick="activarNotificaciones()"
                 >
-                    🎤
+                    Activar notificaciones
                 </button>
-
-            </div>
-
-
-            <!-- FECHA -->
-
-            <input
-                type="date"
-                id="fechaTarea"
-            >
-
-
-            <!-- HORA -->
-
-            <input
-                type="time"
-                id="horaTarea"
-            >
-
-
-            <!-- CANAL -->
-
-            <label for="canalTarea">
-                📢 ¿Cómo quieres que te recuerde?
-            </label>
-
-            <select id="canalTarea">
-
-                <option value="app">
-                    🔔 Notificación de la app
-                </option>
-
-                <option value="whatsapp">
-                    💬 WhatsApp
-                </option>
-
-                <option value="ambos">
-                    🔔💬 App + WhatsApp
-                </option>
-
-            </select>
-
-
-            <!-- BOTONES -->
-
-            <button onclick="agregarTarea()">
-                + Agregar tarea
-            </button>
-
-
-            <button onclick="interpretarTarea()">
-                🧠 Entender tarea
-            </button>
-
-
-            <button onclick="activarNotificaciones()">
-                🔔 Activar notificaciones
-            </button>
-
-
-            <button onclick="probarNotificacion()">
-                🧪 Probar notificación
-            </button>
-
-
-            <!-- RESULTADO DE INTERPRETACIÓN -->
-
-            <div
-                id="resultadoIA"
-                class="resultado-ia"
-            >
-
-                <h3>
-                    🧠 Entendí tu tarea
-                </h3>
-
-
-                <p id="resultadoTexto"></p>
-
 
                 <button
-                    onclick="guardarTareaInterpretada()"
+                    type="button"
+                    class="boton-prueba"
+                    onclick="probarNotificacion()"
                 >
-                    ✅ Guardar tarea
+                    🧪 Probar
                 </button>
 
             </div>
 
-        </div>
+        </section>
 
 
         <!-- LISTA DE TAREAS -->
+        <section class="panel tareas-panel" id="tareas">
 
-        <h2 class="titulo-tareas">
-            Mis tareas
-        </h2>
+            <div class="panel-encabezado tareas-encabezado">
+                <div>
+                    <span class="etiqueta">TU ORGANIZACIÓN</span>
+                    <h2>Mis tareas</h2>
+                    <p>Aquí encontrarás tus recordatorios y actividades.</p>
+                </div>
 
-
-        <div id="listaTareas"></div>
-
-    </div>
-
-
-    <!-- ==================================
-         MODAL DE RECORDATORIO
-    =================================== -->
-
-    <div
-        id="modalRecordatorio"
-        class="modal-recordatorio"
-    >
-
-        <div class="contenido-recordatorio">
-
-            <h2>
-                🔔 Recordatorio
-            </h2>
-
-
-            <p id="textoRecordatorio"></p>
-
-
-            <p>
-                ¿Qué quieres hacer?
-            </p>
-
-
-            <div class="opciones-recordatorio">
-
-                <button
-                    onclick="completarDesdeRecordatorio()"
-                >
-                    ✅ Hecho
-                </button>
-
-
-                <button
-                    onclick="posponerDesdeRecordatorio(10)"
-                >
-                    ⏰ 10 minutos
-                </button>
-
-
-                <button
-                    onclick="posponerDesdeRecordatorio(30)"
-                >
-                    ⏰ 30 minutos
-                </button>
-
-
-                <button
-                    onclick="posponerDesdeRecordatorio(60)"
-                >
-                    ⏰ 1 hora
-                </button>
-
-
-                <button
-                    onclick="posponerMañanaDesdeRecordatorio()"
-                >
-                    📅 Mañana
-                </button>
-
+                <div class="panel-emoji">📋</div>
             </div>
+
+            <div id="listaTareas"></div>
+
+        </section>
+
+
+        <footer class="footer">
+            <p>🧠 Recuérdame · Tu asistente personal de recordatorios</p>
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- MODAL DE RECORDATORIO -->
+<div id="modalRecordatorio" class="modal-recordatorio">
+
+    <div class="contenido-recordatorio">
+
+        <div class="modal-icono">🔔</div>
+
+        <h2>¡Es hora de recordar!</h2>
+
+        <p id="textoRecordatorio"></p>
+
+        <p>¿Qué quieres hacer?</p>
+
+        <div class="opciones-recordatorio">
+
+            <button onclick="completarDesdeRecordatorio()">
+                ✅ Hecho
+            </button>
+
+            <button onclick="posponerDesdeRecordatorio(10)">
+                ⏰ 10 minutos
+            </button>
+
+            <button onclick="posponerDesdeRecordatorio(30)">
+                ⏰ 30 minutos
+            </button>
+
+            <button onclick="posponerDesdeRecordatorio(60)">
+                ⏰ 1 hora
+            </button>
+
+            <button onclick="posponerMañanaDesdeRecordatorio()">
+                📅 Mañana
+            </button>
 
         </div>
 
     </div>
 
+</div>
 
-    <!-- ==================================
-         JAVASCRIPT
-    =================================== -->
 
-  <script src="notificationService.js"></script>
+<!-- JAVASCRIPT ORIGINAL -->
+<script src="notificationService.js"></script>
 <script src="whatsappService.js"></script>
 <script src="app.js"></script>
 
 </body>
-
 </html>
